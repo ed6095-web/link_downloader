@@ -1,0 +1,630 @@
+/* --- CSS Variables --- */
+:root {
+    --font-primary: 'Poppins', sans-serif;
+
+    /* Light Theme */
+    --bg-color-light: #f0f4f8; /* Light grayish blue */
+    --card-bg-light: rgba(255, 255, 255, 0.35);
+    --card-border-light: rgba(255, 255, 255, 0.5);
+    --text-color-light: #2c3e50; /* Dark blue-gray */
+    --text-secondary-light: #566573;
+    --accent-color-light: #3498db; /* Bright blue */
+    --accent-glow-light: rgba(52, 152, 219, 0.5);
+    --button-text-light: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --icon-color-light: #3498db;
+    --input-bg-light: rgba(255, 255, 255, 0.7);
+    --input-border-light: #bdc3c7;
+    --input-focus-border-light: var(--accent-color-light);
+
+    /* Dark Theme */
+    --bg-color-dark: #1a1a2e; /* Deep indigo */
+    --card-bg-dark: rgba(40, 40, 70, 0.45); /* Darker, more saturated glass */
+    --card-border-dark: rgba(255, 255, 255, 0.15);
+    --text-color-dark: #e0e0e0; /* Light gray */
+    --text-secondary-dark: #a0a0b0;
+    --accent-color-dark: #00ffff; /* Cyan / Neon Aqua */
+    --accent-glow-dark: rgba(0, 255, 255, 0.4);
+    --button-text-dark: #161625;
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+    --icon-color-dark: var(--accent-color-dark);
+    --input-bg-dark: rgba(0, 0, 0, 0.3);
+    --input-border-dark: #4b5563;
+    --input-focus-border-dark: var(--accent-color-dark);
+
+    /* Gradients */
+    --gradient-light: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%); /* Sky blue gradient */
+    --gradient-dark: linear-gradient(135deg, #434371 0%, #232526 100%); /* Deep space gradient */
+    --accent-gradient-light: linear-gradient(90deg, var(--accent-color-light), #2980b9);
+    --accent-gradient-dark: linear-gradient(90deg, var(--accent-color-dark), #0abfbf);
+
+
+    /* Transitions & Animations */
+    --transition-speed: 0.3s;
+    --animation-duration: 0.5s;
+}
+
+/* --- Apply Theme --- */
+html.light {
+    --bg-color: var(--bg-color-light);
+    --card-bg: var(--card-bg-light);
+    --card-border: var(--card-border-light);
+    --text-color: var(--text-color-light);
+    --text-secondary: var(--text-secondary-light);
+    --accent-color: var(--accent-color-light);
+    --accent-glow: var(--accent-glow-light);
+    --button-text-color: var(--button-text-light);
+    --shadow-color: var(--shadow-light);
+    --icon-color: var(--icon-color-light);
+    --body-gradient: var(--gradient-light);
+    --accent-gradient: var(--accent-gradient-light);
+    --input-bg: var(--input-bg-light);
+    --input-border: var(--input-border-light);
+    --input-focus-border: var(--input-focus-border-light);
+}
+
+html.dark {
+    --bg-color: var(--bg-color-dark);
+    --card-bg: var(--card-bg-dark);
+    --card-border: var(--card-border-dark);
+    --text-color: var(--text-color-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --accent-color: var(--accent-color-dark);
+    --accent-glow: var(--accent-glow-dark);
+    --button-text-color: var(--button-text-dark);
+    --shadow-color: var(--shadow-dark);
+    --icon-color: var(--icon-color-dark);
+    --body-gradient: var(--gradient-dark);
+    --accent-gradient: var(--accent-gradient-dark);
+    --input-bg: var(--input-bg-dark);
+    --input-border: var(--input-border-dark);
+    --input-focus-border: var(--input-focus-border-dark);
+}
+
+
+/* --- Global Styles --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    background-image: var(--body-gradient);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top to allow scrolling */
+    padding: 20px;
+}
+
+/* Custom Scrollbar (Optional) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--accent-color) 80%, #000);
+}
+
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5em;
+}
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+
+p {
+    margin-bottom: 1em;
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Background Animated Shapes --- */
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Behind everything */
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(50px); /* Soft blur for shapes */
+    animation: float 20s infinite ease-in-out alternate;
+}
+
+.shape1 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-color);
+    top: 10%;
+    left: 5%;
+    animation-duration: 22s;
+}
+
+.shape2 {
+    width: 400px;
+    height: 400px;
+    background: color-mix(in srgb, var(--accent-color) 60%, #fff 40%);
+    top: 50%;
+    right: 10%;
+    animation-duration: 18s;
+    animation-delay: -5s;
+}
+
+.shape3 {
+    width: 250px;
+    height: 250px;
+    background: color-mix(in srgb, var(--accent-color) 80%, #000 20%);
+    bottom: 5%;
+    left: 30%;
+    animation-duration: 25s;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) translateX(20px) rotate(180deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+}
+
+/* --- Main Container & Page Load Animation --- */
+.main-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto; /* Center container */
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: pageLoad var(--animation-duration) ease-out forwards;
+    animation-delay: 0.2s; /* Slight delay for effect */
+}
+
+@keyframes pageLoad {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Header --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.animated-logo {
+    font-size: 2.5rem;
+    color: var(--icon-color);
+    animation: logoPulse 2s infinite ease-in-out;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--icon-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+#theme-toggle:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
+    transform: rotate(15deg) scale(1.1);
+}
+
+
+/* --- Glass Card Base Style --- */
+.glass-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: clamp(20px, 4vw, 30px);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px 0 var(--shadow-color);
+    backdrop-filter: blur(12px); /* Glassmorphism blur */
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 color-mix(in srgb, var(--shadow-color) 150%, #000);
+}
+
+/* --- Input Section --- */
+.input-area h2 {
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+.input-area p {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 1.5em;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#videoUrlInput {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    font-family: var(--font-primary);
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    outline: none;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+#videoUrlInput:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    transform: scale(1.02); /* Subtle scale on focus */
+}
+
+.glow-button {
+    background: var(--accent-gradient);
+    color: var(--button-text-color);
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, opacity var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px 0 var(--accent-glow);
+}
+
+.glow-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px 0 color-mix(in srgb, var(--accent-glow) 150%, #000);
+    opacity: 0.95;
+}
+.glow-button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 2px 10px 0 var(--accent-glow);
+}
+.glow-button i {
+    transition: transform 0.3s ease;
+}
+.glow-button:hover i {
+    transform: rotate(-15deg) scale(1.1);
+}
+
+
+/* --- Loading Section --- */
+#loading-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+#loading-section p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 15px;
+    color: var(--text-color);
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: loaderBounce 1.4s infinite ease-in-out both;
+}
+.loader-dot:nth-child(1) { animation-delay: -0.32s; }
+.loader-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes loaderBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+/* --- Error Section --- */
+.error-card {
+    border-left: 5px solid #e74c3c; /* Red accent for error */
+    text-align: center;
+    opacity: 0; /* For entry animation */
+    transform: translateY(20px);
+}
+.error-card.visible { /* JS will add this class */
+    animation: fadeInSlideUp var(--animation-duration) forwards;
+}
+.error-icon {
+    font-size: 3rem;
+    color: #e74c3c;
+    margin-bottom: 15px;
+    animation: errorIconShake 0.5s ease-in-out;
+}
+@keyframes errorIconShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+.error-card h3 {
+    color: #c0392b;
+}
+
+
+/* --- Results Section & Card --- */
+#results-section {
+    opacity: 0; /* For entry animation */
+    transform: translateY(30px);
+    /* JS will add .visible to trigger animation */
+}
+#results-section.visible {
+    animation: fadeInSlideUp var(--animation-duration) forwards;
+}
+
+.result-card {
+    /* Extends .glass-card, so common styles apply */
+    padding: 25px;
+    margin-top: 20px; /* Spacing if multiple cards, or from loader */
+}
+
+.result-card .video-title {
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    /* Optional typing animation (more complex, often needs JS) */
+}
+
+.result-card .thumbnail-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px; /* Or adjust as needed */
+    margin: 0 auto 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.result-card .video-thumbnail {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth zoom */
+}
+.result-card .thumbnail-container:hover .video-thumbnail {
+    transform: scale(1.1);
+}
+
+.result-card .video-metadata {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+}
+.result-card .metadata-item {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+.result-card .metadata-item strong {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.formats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.format-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 10px;
+    background: var(--input-bg); /* Slightly different from main card for depth */
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+.format-button:hover {
+    transform: translateY(-4px) scale(1.03);
+    background: var(--accent-gradient);
+    color: var(--button-text-color);
+    border-color: transparent;
+    box-shadow: 0 6px 20px var(--accent-glow);
+}
+.format-button:hover .format-button-icon,
+.format-button:hover .format-button-label,
+.format-button:hover .format-button-size {
+    color: var(--button-text-color);
+}
+
+.format-button-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: var(--icon-color);
+    transition: color var(--transition-speed) ease;
+}
+.format-button-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    transition: color var(--transition-speed) ease;
+}
+.format-button-size {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-speed) ease;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 40px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--card-border);
+}
+footer #currentYear {
+    font-weight: 500;
+}
+footer .disclaimer {
+    font-size: 0.8em;
+    margin-top: 5px;
+    opacity: 0.7;
+}
+
+/* --- Utility Classes --- */
+.hidden {
+    display: none !important;
+    opacity: 0;
+    visibility: hidden;
+}
+.visible { /* To trigger entry animations */
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* --- Entry Animation (can be reused) --- */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Confetti Container --- */
+#confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to go through */
+    z-index: 9999;
+    overflow: hidden;
+}
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-color);
+    opacity: 0.7;
+    animation: confettiFall 3s ease-out forwards;
+}
+@keyframes confettiFall {
+    0% { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    .main-container { padding: 15px; }
+    header .logo h1 { font-size: 1.8rem; }
+    .animated-logo { font-size: 2rem; }
+    .input-wrapper { flex-direction: column; }
+    #videoUrlInput { width: 100%; margin-right: 0; margin-bottom: 10px; }
+    .formats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+    .format-button { padding: 10px 8px; }
+    .format-button-icon { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    header .logo h1 { font-size: 1.5rem; }
+    .input-area h2 { font-size: 1.3rem; }
+    .glow-button { font-size: 1rem; padding: 12px 18px; }
+    .result-card .video-title { font-size: 1.1rem; }
+    .result-card .metadata-item { font-size: 0.85rem; }
+    .formats-grid { grid-template-columns: 1fr; } /* Single column on very small screens */
+}

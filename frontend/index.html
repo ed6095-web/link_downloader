@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="light"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Droporia - Modern Video Downloader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    </head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="main-container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-cloud-arrow-down animated-logo"></i>
+                <h1>Droporia</h1>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i> </button>
+        </header>
+
+        <main>
+            <section id="url-input-section" class="glass-card input-area">
+                <h2>Download Your Video</h2>
+                <p>Paste any YouTube or Instagram video link below.</p>
+                <div class="input-wrapper">
+                    <input type="url" id="videoUrlInput" placeholder="Paste Link of YOUTUBE or INSTAGRAM">
+                    <button id="fetchInfoButton" class="glow-button">
+                        <i class="fas fa-bolt"></i> Get Video Info
+                    </button>
+                </div>
+            </section>
+
+            <section id="loading-section" class="hidden">
+                <div class="loader">
+                    <div class="loader-dot"></div>
+                    <div class="loader-dot"></div>
+                    <div class="loader-dot"></div>
+                </div>
+                <p>Fetching details, please hang tight! ✨</p>
+            </section>
+
+            <section id="error-section" class="glass-card error-card hidden">
+                <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3>Oops! Something went wrong.</h3>
+                <p id="errorMessage"></p>
+            </section>
+
+            <section id="results-section" class="hidden">
+                </section>
+        </main>
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> Droporia - By Chitty</p>
+            <p class="disclaimer">
+                Disclaimer: For personal use only. Respect copyright laws.
+            </p>
+        </footer>
+    </div>
+
+    <div id="confetti-container"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
